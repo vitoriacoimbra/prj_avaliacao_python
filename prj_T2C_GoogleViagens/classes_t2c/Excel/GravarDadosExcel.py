@@ -24,7 +24,7 @@ class GravarDadosExcel:
         """
 
 
-        var_strCaminhoBase = r'C:\Users\vitoria.coimbra\Desktop\prj_T2C_GoogleViagens\prj_T2C_GoogleViagens\resources\planilha_exec'
+        var_strCaminhoBase = r'C:\Robo\prj_T2C_GoogleViagens\prj_T2C_GoogleViagens\resources\planilha_exec'
         var_strNomePlanilha = 'DadosViagem.xlsx'
         var_strCaminhoCompleto = os.path.join(var_strCaminhoBase, var_strNomePlanilha)
 

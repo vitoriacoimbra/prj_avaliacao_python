@@ -81,7 +81,7 @@ class T2CInitAllApplications:
 
         #Exclui arquivo de processamento, caso houver
 
-        var_strCaminhoCompleto = r'C:\Users\vitoria.coimbra\Desktop\prj_T2C_GoogleViagens\prj_T2C_GoogleViagens\resources\planilha_exec\DadosViagem.xlsx'
+        var_strCaminhoCompleto = r'C:\Robo\prj_T2C_GoogleViagens\prj_T2C_GoogleViagens\resources\planilha_exec\DadosViagem.xlsx'
         #Se arquivo existir
         if os.path.exists(var_strCaminhoCompleto):
            #excluir arquivo

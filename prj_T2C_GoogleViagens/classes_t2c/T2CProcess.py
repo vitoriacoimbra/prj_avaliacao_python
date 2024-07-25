@@ -51,15 +51,10 @@ class T2CProcess:
         #atribui pais para variavel por controle
         var_strPais = arg_tplQueueItem[1]
 
-        #Abre Chrome com site do GoogleTravel
-        #GoogleTravel.open_GoogleTravel(arg_clssMaestro=self.var_clssMaestro, arg_botWebbot=self.var_botWebbot)
-
         #Procura pais no Google Travel
         GoogleTravel.search_destination(arg_strCountry=var_strPais, arg_clssMaestro=self.var_clssMaestro, arg_botWebbot=self.var_botWebbot)
 
         #Captura os destinos possível do pais pesquisado
-        GoogleTravel.get_destinations(arg_clssMaestro=self.var_clssMaestro, arg_botWebbot=self.var_botWebbot)
+        GoogleTravel.get_destinations(arg_strCountry=var_strPais, arg_botWebbot=self.var_botWebbot)
         
-        #Fecha chrome
-        #GoogleTravel.close_GoogleTravel(arg_clssMaestro=self.var_clssMaestro, arg_botWebbot=self.var_botWebbot)
 

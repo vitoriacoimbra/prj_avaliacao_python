@@ -50,7 +50,7 @@ class T2CInitAllApplications:
 
         print("Inicio da extração dos países da tabela da página dos Dados Mundiais")
         #For de 30 percorrendo a tabela dos dados mundiais e capturando os paises e lançando na fila 
-        for i in range(1,31):
+        for i in range(1,6):
             var_strPais = self.var_botWebbot.find_element(f'//*[@id="main"]/div[3]/div[2]/table/tbody/tr[{str(i+1)}]/td[2]', by=By.XPATH).text 
             
             self.var_clssSqliteQueue.insert_new_queue_item(arg_strReferencia= var_strPais)

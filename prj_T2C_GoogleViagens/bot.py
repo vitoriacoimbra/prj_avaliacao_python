@@ -39,6 +39,7 @@ from prj_T2C_GoogleViagens.classes_t2c.utils.T2CExceptions import BusinessRuleEx
 from prj_T2C_GoogleViagens.classes_t2c.utils.T2CMaestro import T2CMaestro, LogLevel, ErrorType
 from prj_T2C_GoogleViagens.classes_t2c.sqlserver.T2CSqlAnaliticoSintetico import T2CSqlAnaliticoSintetico
 from prj_T2C_GoogleViagens.classes_t2c.utils.T2CScreenRecorder import T2CScreenRecorder
+from prj_T2C_GoogleViagens.classes_t2c.Excel.GravarDadosExcel import GravarDadosExcel
 from clicknium.common.constants import _Constants
 from clicknium.common.utils import Utils
 from webdriver_manager import chrome, firefox, microsoft
@@ -397,6 +398,12 @@ class Bot(WebBot):
         var_strTotalProcessamento = str(var_dateDatahoraFim - var_dateDatahoraInicio)
         var_strTotalProcessamento = var_strTotalProcessamento.split('.')[0]
         var_clssRelatorios.inserir_linha_sintetico(arg_listValores=[var_strNomeProcesso, var_strDatahoraInicio, var_strDatahoraFim, var_strTotalProcessamento, var_intQtdeItensProcessados, var_intQtdeItensSucesso, var_intQtdeItensBusinessException, var_intQtdeItensAppException, var_strNomeMaquina])
+
+        #organizando excel 
+        try: 
+            GravarDadosExcel.OrdenarDados()
+        except:
+            pass
 
         #Se for indicando que é necessário incluir linhas no SQL Server, ou verificado que não está rodando em debug (vs code ou test task), insere a primeira aqui
         if(var_dictConfig["NecesSQLServer"].upper() == "SIM" and not var_clssMaestro.var_boolIsTestTask):

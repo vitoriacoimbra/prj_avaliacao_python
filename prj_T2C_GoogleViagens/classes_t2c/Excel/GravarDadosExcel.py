@@ -11,7 +11,7 @@ class GravarDadosExcel:
     """    
 
     @staticmethod
-    def GravarDados(arg_strDestino:str, arg_strPreco:str):
+    def GravarDados(arg_strPais:str, arg_strDestino:str, arg_strPreco:str):
         """
         metodo para escrever os dados retirados do GoogleTravel em uma planilha
         
@@ -28,12 +28,13 @@ class GravarDadosExcel:
         var_strNomePlanilha = 'DadosViagem.xlsx'
         var_strCaminhoCompleto = os.path.join(var_strCaminhoBase, var_strNomePlanilha)
 
-        var_strDadosDestino = {
-           'Destino': [arg_strDestino],
-           'Preço': [arg_strPreco]
+        var_dataDadosDestino = {
+            'Pais': [arg_strPais],
+            'Cidade': [arg_strDestino],
+            'Preço': [arg_strPreco]
        }
 
-        var_dfDadosDestino = pd.DataFrame(var_strDadosDestino)
+        var_dfDadosDestino = pd.DataFrame(var_dataDadosDestino)
 
         
 
@@ -45,8 +46,27 @@ class GravarDadosExcel:
             var_dfDadosDestino = pd.concat([var_dfDadosDestino, var_dfExcel], ignore_index=True)
            
         
-        var_dfDadosDestino.to_excel(var_strCaminhoCompleto, index=False)
+        var_dfDadosDestino.to_excel(var_strCaminhoCompleto, sheet_name='Todos', index=False)
     
+
+    @staticmethod
+    def OrdenarDados():
+        var_strCaminhoBase = r'C:\Robo\prj_T2C_GoogleViagens\prj_T2C_GoogleViagens\resources\planilha_exec'
+        var_strNomePlanilha = 'DadosViagem.xlsx'
+        var_strCaminhoCompleto = os.path.join(var_strCaminhoBase, var_strNomePlanilha)
+
+        var_dfExcel = pd.read_excel(var_strCaminhoCompleto) 
+
+        var_dfExcel = var_dfExcel.sort_values(by='Preço', ascending= True)
+
+        var_dtDestinosBaratos = var_dfExcel.head(10)
+
+        # Escrever o DataFrame na nova aba
+        with pd.ExcelWriter(var_strCaminhoCompleto, engine='openpyxl', mode='a') as writer:
+            var_dtDestinosBaratos.to_excel(writer, sheet_name='Baratos', index=False)
+
+
+
 
 
 

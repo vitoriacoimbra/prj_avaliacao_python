@@ -110,11 +110,11 @@ class GoogleTravel:
             #Inserindo valores no campo de dataInicio
             var_eleDataInicio = arg_botWebbot.find_element(f'/html/body/c-wiz[2]/div/div[2]/div/c-wiz/div[2]/div/div/div[1]/div[1]/section/div/div[1]/div[1]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div[2]/span/div/div[1]/div/div[1]/div/input', by=By.XPATH)
             sleep(1)
-            var_eleDataInicio.send_keys("20/04/2024")
+            var_eleDataInicio.send_keys("20/08/2024")
 
             #Inserindo valores no campo de dataFim
             var_eleDataFim = arg_botWebbot.find_element(f'/html/body/c-wiz[2]/div/div[2]/div/c-wiz/div[2]/div/div/div[1]/div[1]/section/div/div[1]/div[1]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div[2]/span/div/div[1]/div/div[2]/div/input', by=By.XPATH)
-            var_eleDataFim.send_keys("23/04/2024")
+            var_eleDataFim.send_keys("23/08/2024")
             var_eleDataFim.send_keys(Keys.ENTER)
             sleep(2)
 
@@ -122,10 +122,8 @@ class GoogleTravel:
             arg_botWebbot.find_element(f'/html/body/c-wiz[2]/div/div[2]/div/c-wiz/div[2]/div/div/div[1]/div[1]/section/div/div[1]/div[1]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/button/span', by=By.XPATH).click()
             
 
-
-
     @staticmethod
-    def get_destinations(arg_clssMaestro:T2CMaestro, arg_botWebbot:WebBot=None):
+    def get_destinations(arg_strCountry:str, arg_botWebbot:WebBot=None):
         """
         metodo para extrair destinos dentro do pais pesquisado e retornando uma tabela com esses destinos 
         
@@ -142,7 +140,7 @@ class GoogleTravel:
             var_strDestino = arg_botWebbot.find_element(f'/html/body/c-wiz[2]/div/div[2]/div/c-wiz/div[2]/div/div/div[1]/main/div/div[2]/div/ol/li[{str(i+1)}]/div/div[2]/div[1]/h3', by=By.XPATH).text
             var_strPreco = arg_botWebbot.find_element(f'/html/body/c-wiz[2]/div/div[2]/div/c-wiz/div[2]/div/div/div[1]/main/div/div[2]/div/ol/li[{str(i+1)}]/div/div[2]/div[2]/div[1]/div[1]/span', by=By.XPATH).text
 
-            GravarDadosExcel.GravarDados(arg_strDestino=var_strDestino, arg_strPreco=var_strPreco)
+            GravarDadosExcel.GravarDados(arg_strPais=arg_strCountry, arg_strDestino=var_strDestino, arg_strPreco=var_strPreco)
 
 
 
